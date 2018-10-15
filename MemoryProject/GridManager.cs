@@ -41,7 +41,7 @@ namespace MemoryProject
         
         private void ClickCard(object sender, MouseButtonEventArgs e)
         {
-            
+            ((Image)sender).Source = new BitmapImage(new Uri("Images/Placeholders/CSharp.jpg", UriKind.Relative));
         }
         
 
