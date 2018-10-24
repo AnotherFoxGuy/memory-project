@@ -6,12 +6,14 @@ namespace MemoryProject
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainMenuWindow
+    public partial class MainGameWindow
     {
         private readonly NewGameWindow _newGameWindow;
-        public MainMenuWindow(NewGameWindow newGameWindow)
+        public MainGameWindow(NewGameWindow newGameWindow)
         {
+
             //zorgt ervoor dat de naam op andere window ook wordt veranderd
+            //retry
             _newGameWindow = newGameWindow;
             label1.Content = _newGameWindow.textbox1.Text;
             label2.Content = _newGameWindow.textbox2.Text;
