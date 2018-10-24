@@ -1,4 +1,4 @@
-﻿<Window x:Class="MemoryProject.MainGameWindow"
+﻿<Window x:Class="MemoryProject.MainMenuWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,8 +7,11 @@
         Title="Name The Game" Height="450" Width="800">
     <Grid>
         <Label Name="Score1"  Content="Score: 0" />
+        
         <Button Content="New Game" HorizontalAlignment="Right" Margin="10,5" VerticalAlignment="Top" Width="100" Height="30" 
                 Click="RestartGame" AutomationProperties.AutomationId="RestartGame" />
 		<UniformGrid x:Name="LiveGameGrid" Margin="50,50,50,20"/>
+        <Label Name="label1" Content="Label" HorizontalAlignment="Left" Margin="104,17,0,0" VerticalAlignment="Top"/>
+        <Label Name="label2" Content="Label" HorizontalAlignment="Left" Margin="479,17,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

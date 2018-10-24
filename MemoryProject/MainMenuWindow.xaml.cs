@@ -11,7 +11,7 @@ namespace MemoryProject
 
         private void NewGame(object sender, RoutedEventArgs routedEventArgs)
         {
-            var mainWindow = new MainGameWindow();
+            var mainWindow = new MainMenuWindow();
             mainWindow.Show();
             new NewGameWindow().Show();
             Close();
