@@ -11,10 +11,12 @@ namespace MemoryProject
         private readonly NewGameWindow _newGameWindow;
         public MainMenuWindow(NewGameWindow newGameWindow)
         {
-
+            //zorgt ervoor dat de naam op andere window ook wordt veranderd
             _newGameWindow = newGameWindow;
             label1.Content = _newGameWindow.textbox1.Text;
             label2.Content = _newGameWindow.textbox2.Text;
+
+
             GridManager.Instance.LiveGameGrid = LiveGameGrid;
             GridManager.Instance.ScoreLabel = Score1;
         }
