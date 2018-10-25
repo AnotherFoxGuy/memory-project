@@ -20,6 +20,8 @@ namespace MemoryProject
 
         private void OnButtonClick(object sender, RoutedEventArgs e)
         {
+            GridManager.Instance.PlayerName1.Content = textbox1.Text;
+            GridManager.Instance.PlayerName2.Content = textbox2.Text;
             var size = int.Parse(((Button)sender).Tag.ToString());
             GridManager.Instance.NewGrid(size);
             Close();

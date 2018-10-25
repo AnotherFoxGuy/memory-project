@@ -51,9 +51,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="MainMenuWindow.xaml" />
-    <Page Include="MainGameWindow.xaml">
+    <Page Include="..\..\Namen invoeren done\MainGameWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Link>MainGameWindow.xaml</Link>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -65,9 +66,10 @@
     <Compile Include="MainMenuWindow.xaml.cs">
       <DependentUpon>MainMenuWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainGameWindow.xaml.cs">
+    <Compile Include="..\..\Namen invoeren done\MainGameWindow.xaml.cs">
       <DependentUpon>MainGameWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
+      <Link>MainGameWindow.xaml.cs</Link>
     </Compile>
     <Page Include="NewGameWindow.xaml" />
   </ItemGroup>

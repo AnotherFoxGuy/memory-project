@@ -8,30 +8,28 @@ namespace MemoryProject
     /// </summary>
     public partial class MainGameWindow
     {
-        private readonly NewGameWindow _newGameWindow;
-        public MainGameWindow(NewGameWindow newGameWindow)
+        public MainGameWindow()
+
         {
+            InitializeComponent();
 
-            //zorgt ervoor dat de naam op andere window ook wordt veranderd
-            //retry
-            _newGameWindow = newGameWindow;
-            label1.Content = _newGameWindow.textbox1.Text;
-            label2.Content = _newGameWindow.textbox2.Text;
-
-
+            GridManager.Instance.PlayerName1 = label1;
+            GridManager.Instance.PlayerName2 = label2;
             GridManager.Instance.LiveGameGrid = LiveGameGrid;
             GridManager.Instance.ScoreLabel = Score1;
         }
+
 
         private void RestartGame(object sender, RoutedEventArgs e)
         {
             GridManager.Instance.Clear();
             GridManager.Instance.LiveGameGrid = null;
             GridManager.Instance.ScoreLabel = null;
-            
+
             var mainWindow = new MainMenuWindow();
             mainWindow.Show();
             Close();
+
         }
     }
 }
