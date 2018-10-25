@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Windows.Media.Imaging;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using MemoryProject.Data;
-using Grid = System.Windows.Controls.Grid;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Windows.Controls;
 using System.Windows.Input;
-using System.Linq.Expressions;
+using System.Windows.Media.Imaging;
+using MemoryProject.Data;
+using Newtonsoft.Json;
 
 namespace MemoryProject
 {
@@ -16,47 +15,11 @@ namespace MemoryProject
         static Random rnd = new Random();
 
         /// <summary>
-        /// Placeholder theme only works for 4x4
+        /// supports a game upto 20 Pairs a.k.a 40 Cards
         /// </summary>
-        public readonly Theme PlaceholderTheme = new Theme
-        {
-            BackImageName = "Cardback",
-            cards = new List<Card>
-            {
-                new Card
-                {
-                    Name = "blue"
-                },
-                new Card
-                {
-                    Name = "red"
-                },
-                new Card
-                {
-                    Name = "brown"
-                },
-                new Card
-                {
-                    Name = "green"
-                },
-                new Card
-                {
-                    Name = "orange"
-                },
-                new Card
-                {
-                    Name = "yellow"
-                },
-                new Card
-                {
-                    Name = "purple"
-                },
-                new Card
-                {
-                    Name = "pink"
-                }
-            },
-        };
+        public readonly Theme PlaceholderTheme =
+            JsonConvert.DeserializeObject<Theme>(
+                File.ReadAllText($@"{AppDomain.CurrentDomain.BaseDirectory}\Themes\PlaceholderTheme.json"));
 
 
         /// <summary>
@@ -66,9 +29,19 @@ namespace MemoryProject
         /// <param name="rows">Amount of rows</param>
         internal GameGrid InitializeGameGrid(int cols, int rows)
         {
-            var TmpCardsList = new List<Card>();
-            TmpCardsList.AddRange(PlaceholderTheme.cards);
-            TmpCardsList.AddRange(PlaceholderTheme.cards);
+            var cardsNeeded = cols * rows;
+            var tmpCardsList = new List<Card>();
+            var cardsUsedList = PlaceholderTheme.cards.Take(cardsNeeded / 2).ToList();
+            cardsUsedList.ForEach(c =>
+            {
+                c.ID = c.Name;
+                tmpCardsList.Add(c);
+            });
+            cardsUsedList.ForEach(c =>
+            {
+                c.ID = $"{c.Name}Pair";
+                tmpCardsList.Add(c);
+            });
 
             var gameGrid = new GameGrid {cards = new Dictionary<string, Card>()};
 
@@ -76,19 +49,15 @@ namespace MemoryProject
             {
                 for (var column = 0; column < cols; column++)
                 {
-                    var RCard = TmpCardsList[rnd.Next(TmpCardsList.Count)];
-                    TmpCardsList.Remove(RCard);
-
-                    var name = TmpCardsList.Exists(item => item.Name == RCard.Name)
-                        ? RCard.Name
-                        : $"{RCard.Name}Pair";
+                    var RCard = tmpCardsList[rnd.Next(tmpCardsList.Count)];
+                    tmpCardsList.Remove(RCard);
 
                     var backgroundImage = new Image
                     {
                         Source = new BitmapImage(new Uri($"Images/Placeholders/{PlaceholderTheme.BackImageName}.png",
                             UriKind.Relative)),
                         Cursor = Cursors.Hand,
-                        Name = name
+                        Name = RCard.ID
                     };
                     backgroundImage.MouseDown += GridManager.Instance.ClickCard;
                     Grid.SetColumn(backgroundImage, column);
@@ -97,7 +66,7 @@ namespace MemoryProject
 
                     RCard.Row = row;
                     RCard.Column = column;
-                    gameGrid.cards.Add(name, RCard);
+                    gameGrid.cards.Add(RCard.ID, RCard);
                 }
             }
 

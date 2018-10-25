@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -51,10 +55,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="MainMenuWindow.xaml" />
-    <Page Include="..\..\Namen invoeren done\MainGameWindow.xaml">
+    <Page Include="MainGameWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-      <Link>MainGameWindow.xaml</Link>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -66,10 +69,9 @@
     <Compile Include="MainMenuWindow.xaml.cs">
       <DependentUpon>MainMenuWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\..\Namen invoeren done\MainGameWindow.xaml.cs">
+    <Compile Include="MainGameWindow.xaml.cs">
       <DependentUpon>MainGameWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
-      <Link>MainGameWindow.xaml.cs</Link>
     </Compile>
     <Page Include="NewGameWindow.xaml" />
   </ItemGroup>
@@ -92,12 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Placeholders\100x100.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Placeholders\CSharp.jpg" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Placeholders\blue.png" />
@@ -111,6 +108,25 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Placeholders\Cardback.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Placeholders\blueGrey.png" />
+    <Resource Include="Images\Placeholders\darkRed.png" />
+    <Resource Include="Images\Placeholders\gold.png" />
+    <Resource Include="Images\Placeholders\grey.png" />
+    <Resource Include="Images\Placeholders\lavender.png" />
+    <Resource Include="Images\Placeholders\lightGreen.png" />
+    <Resource Include="Images\Placeholders\lightGrey.png" />
+    <Resource Include="Images\Placeholders\lightTurquoise.png" />
+    <Resource Include="Images\Placeholders\lightYellow.png" />
+    <Resource Include="Images\Placeholders\lime.png" />
+    <Resource Include="Images\Placeholders\turquoise.png" />
+    <Resource Include="Images\Placeholders\white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\PlaceholderTheme.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
